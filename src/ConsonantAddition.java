@@ -1,7 +1,23 @@
+
 import java.util.ArrayList;
+
+/**
+ * A class which incrementally adds consonants in each location (including in front of and after) of the word/phrase
+ * and prints new alternative statements if they are valid in the passed dictionary.
+ *
+ * @author CS5001 Student (acm35@st-andrews.ac.uk)
+ *
+ * @version 1
+ * @since 1
+ */
 
 public class ConsonantAddition {
 
+  /**
+   * Prints the ConsonantAddition alternatives of a word or phrase compared against a passed dictionary.
+   * @param args A file location of the dictionary, followed by a word or "phrase"
+   *
+   */
     public static void main(String[] args) {
 
         // Argument check
@@ -28,14 +44,15 @@ public class ConsonantAddition {
         String input = args[1];
 
         // Create an array of consonants
-        String[] consonants = {"b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"};
+        String[] consonants = {"b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t",
+         "v", "w", "x", "y", "z"};
 
         int numOfAlternativesFound = 0;
 
-        for(int i=0; i<input.length()+1; i++) {
+        for (int i = 0; i < input.length() + 1; i++) {
 
             // Iterate through consonants to add into each index
-            for(String letter : consonants ) {
+            for (String letter : consonants) {
 
                 // Insert the consonant into the phrase
                 StringBuilder sb = new StringBuilder(input);
@@ -93,9 +110,9 @@ public class ConsonantAddition {
             //Get the last character of word
             char lastCharacter = words[x].charAt(words[x].length() - 1);
 
-            //Check if the last character is a '.' ',' '/' '?' '!', if so remove punctuation
+            //Check last character and remove if punctuation
             if (".,/?!".indexOf(lastCharacter) != -1) {
-                words[x] = words[x].replaceAll("[^\\w]", ""); // remove punctuation
+                words[x] = words[x].replaceAll("\\p{Punct}", ""); // remove punctuation
             }
 
             if (dictionary.contains(words[x].toLowerCase())) {
